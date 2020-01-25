@@ -11,7 +11,7 @@
 	<groupId>com.tirmizee</groupId>
 	<artifactId>AuthorizationServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>AuthorizationServer</name>
+	<name>Service-AuthorizationServer</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -26,12 +26,6 @@
         <dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-jdbc</artifactId>
-		  <!--   <exclusions>
-		        <exclusion>
-		            <groupId>org.apache.tomcat</groupId>
-		            <artifactId>tomcat-jdbc</artifactId>
-		         </exclusion>
-		     </exclusions> -->
 		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,6 +43,21 @@
 		<dependency>
 		    <groupId>com.zaxxer</groupId>
 		    <artifactId>HikariCP</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.oracle</groupId>

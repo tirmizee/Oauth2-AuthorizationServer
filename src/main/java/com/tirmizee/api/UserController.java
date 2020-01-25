@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tirmizee.api.data.UserData;
 import com.tirmizee.dao.UserDao;
-import com.tirmizee.data.UserData;
 
 @RestController
 @RequestMapping("/users")
@@ -21,6 +21,5 @@ public class UserController {
     public List<UserData> listUser(){
         return userDao.findAll();
     }
-	
 	
 }

@@ -10,7 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
-import com.tirmizee.data.UserData;
+import com.tirmizee.api.data.UserData;
 
 @Repository
 public class UserDaoImpl implements UserDao {

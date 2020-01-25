@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.User;
 
-import com.tirmizee.data.UserData;
+import com.tirmizee.api.data.UserData;
 
 public interface UserDao {
 	

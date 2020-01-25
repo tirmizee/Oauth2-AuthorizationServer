@@ -1,4 +1,4 @@
-package com.tirmizee.data;
+package com.tirmizee.api.data;
 
 public class UserData {
 	

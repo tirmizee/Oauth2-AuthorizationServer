@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -45,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
-                .passwordEncoder(encoder());
+                .passwordEncoder(bCryptPasswordEncoder());
     }
 
     @Override
@@ -62,8 +63,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new JdbcTokenStore(dataSource);
     }
 
+	
+	@Bean public PasswordEncoder passwordEncoder(){ 
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
+	 
+    @SuppressWarnings("deprecation")
+	@Bean
+    public PasswordEncoder noOpPasswordEncoder(){
+        return NoOpPasswordEncoder.getInstance();
+    }
+    
     @Bean
-    public BCryptPasswordEncoder encoder(){
+    public PasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
     

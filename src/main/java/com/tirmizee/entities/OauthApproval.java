@@ -1,11 +1,15 @@
 package com.tirmizee.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -22,11 +26,14 @@ import lombok.Data;
 public class OauthApproval implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
 	private String clientid;
 
-	private Object expiresat;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date expiresat;
 
-	private Object lastmodifiedat;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date lastmodifiedat;
 
 	@Column(name="\"SCOPE\"")
 	private String scope;

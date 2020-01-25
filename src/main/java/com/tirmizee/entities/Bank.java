@@ -1,11 +1,14 @@
 package com.tirmizee.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -35,10 +38,12 @@ public class Bank implements Serializable {
 	@Column(name="BANK_NAME")
 	private String bankName;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="CREATE_DATE")
-	private Object createDate;
+	private Date createDate;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="UPDATE_DATE")
-	private Object updateDate;
+	private Date updateDate;
 
 }

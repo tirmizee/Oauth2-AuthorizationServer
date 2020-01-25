@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -28,6 +29,7 @@ public class OauthRefreshToken implements Serializable {
 	@Lob
 	private byte[] token;
 
+	@Id
 	@Column(name="TOKEN_ID")
 	private String tokenId;
 

@@ -18,6 +18,7 @@ import lombok.Data;
 public class AppSetting implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
 	@Column(name="\"KEY\"")
 	private String key;
 

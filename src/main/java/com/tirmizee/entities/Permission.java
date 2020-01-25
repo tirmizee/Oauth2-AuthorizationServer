@@ -1,11 +1,14 @@
 package com.tirmizee.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -27,8 +30,9 @@ public class Permission implements Serializable {
 	@Column(name="CREATE_BY")
 	private String createBy;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="CREATE_DATE")
-	private Object createDate;
+	private Date createDate;
 
 	@Column(name="PER_CODE")
 	private String perCode;
@@ -39,7 +43,8 @@ public class Permission implements Serializable {
 	@Column(name="UPDATE_BY")
 	private String updateBy;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="UPDATE_DATE")
-	private Object updateDate;
+	private Date updateDate;
 
 }

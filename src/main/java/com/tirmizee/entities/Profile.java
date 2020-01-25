@@ -1,6 +1,7 @@
 package com.tirmizee.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -33,8 +36,9 @@ public class Profile implements Serializable {
 	@Column(name="CITIZEN_ID")
 	private String citizenId;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="CREATE_DATE")
-	private Object createDate;
+	private Date createDate;
 
 	private String email;
 
@@ -56,7 +60,8 @@ public class Profile implements Serializable {
 
 	private String tel;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="UPDATE_DATE")
-	private Object updateDate;
+	private Date updateDate;
 
 }

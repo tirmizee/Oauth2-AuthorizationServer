@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -21,9 +22,7 @@ import lombok.Data;
 public class Village implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="SUB_DISTRICT_CODE")
-	private String subDistrictCode;
-
+	@Id
 	@Column(name="VILLAGE_CODE")
 	private String villageCode;
 
@@ -32,5 +31,8 @@ public class Village implements Serializable {
 
 	@Column(name="VILLAGE_NO")
 	private String villageNo;
+	
+	@Column(name="SUB_DISTRICT_CODE")
+	private String subDistrictCode;
 
 }

@@ -2,10 +2,15 @@ package com.tirmizee.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -28,10 +33,10 @@ public class User implements Serializable {
 	private long userId;
 
 	@Column(name="ACCOUNT_EXPIRED_DATE")
-	private Object accountExpiredDate;
+	private Date accountExpiredDate;
 
 	@Column(name="ACCOUNT_LOCKED_DATE")
-	private Object accountLockedDate;
+	private Timestamp accountLockedDate;
 
 	@Column(name="ACCOUNT_NON_EXPIRED")
 	private BigDecimal accountNonExpired;
@@ -40,10 +45,10 @@ public class User implements Serializable {
 	private BigDecimal accountNonLocked;
 
 	@Column(name="CREATE_DATE")
-	private Object createDate;
+	private Date createDate;
 
 	@Column(name="CREDENTIALS_EXPIRED_DATE")
-	private Object credentialsExpiredDate;
+	private Date credentialsExpiredDate;
 
 	@Column(name="CREDENTIALS_NON_EXPIRED")
 	private BigDecimal credentialsNonExpired;
@@ -65,8 +70,12 @@ public class User implements Serializable {
 	private BigDecimal profileId;
 
 	@Column(name="UPDATE_DATE")
-	private Object updateDate;
+	private Date updateDate;
 
 	private String username;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="FK_ROLE_ID", insertable = false, updatable = false)
+	private Role role;
 
 }

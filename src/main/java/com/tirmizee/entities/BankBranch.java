@@ -1,6 +1,8 @@
 package com.tirmizee.entities;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 import lombok.Data;
@@ -34,13 +36,15 @@ public class BankBranch implements Serializable {
 	@Column(name="BRANCH_NAME_EN")
 	private String branchNameEn;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="CREATED_DATE")
-	private Object createdDate;
+	private Date createdDate;
 
 	@Column(name="IS_BANK_BRANCH")
 	private String isBankBranch;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="UPDATED_DATE")
-	private Object updatedDate;
+	private Date updatedDate;
 
 }

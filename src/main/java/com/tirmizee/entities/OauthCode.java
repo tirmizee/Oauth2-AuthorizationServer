@@ -3,6 +3,7 @@ package com.tirmizee.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -24,6 +25,7 @@ public class OauthCode implements Serializable {
 	@Lob
 	private byte[] authentication;
 
+	@Id
 	private String code;
 
 }

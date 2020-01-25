@@ -1,12 +1,17 @@
 package com.tirmizee.entities;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -26,8 +31,9 @@ public class Role implements Serializable {
 	@Column(name="ROLE_ID")
 	private long roleId;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="CREATE_DATE")
-	private Object createDate;
+	private Date createDate;
 
 	@Column(name="ROLE_CODE")
 	private String roleCode;
@@ -41,7 +47,11 @@ public class Role implements Serializable {
 	@Column(name="UPDATE_BY")
 	private String updateBy;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name="UPDATE_DATE")
-	private Object updateDate;
+	private Date updateDate;
+	
+	@OneToMany(mappedBy="role")
+	private List<User> users;
 
 }

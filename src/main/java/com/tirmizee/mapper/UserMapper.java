@@ -7,8 +7,8 @@ import com.tirmizee.api.dto.UserDTO;
 import com.tirmizee.entities.User;
 
 @Mapper
-public interface UserMapper extends GenericMapper<UserDTO, User>{
+public interface UserMapper extends GenericMapper<UserDTO, User> {
 	
 	static final UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
-
+	
 }

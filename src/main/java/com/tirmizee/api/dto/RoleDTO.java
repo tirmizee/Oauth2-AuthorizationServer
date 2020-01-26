@@ -1,6 +1,7 @@
 package com.tirmizee.api.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
@@ -14,12 +15,12 @@ import lombok.Data;
 public class RoleDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private long roleId;
-	private Object createDate;
+	private Date createDate;
 	private String roleCode;
 	private String roleDesc;
 	private String roleName;
 	private String updateBy;
-	private Object updateDate;
+	private Date updateDate;
 	private List<RoleMapPermissionDTO> roleMapPermissions;
 
 }

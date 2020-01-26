@@ -1,6 +1,7 @@
 package com.tirmizee.api.dto;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -8,12 +9,12 @@ import lombok.Data;
 public class UserDTO {
 	
 	private long userId;
-	private Object accountExpiredDate;
-	private Object accountLockedDate;
+	private Date accountExpiredDate;
+	private Date accountLockedDate;
 	private BigDecimal accountNonExpired;
 	private BigDecimal accountNonLocked;
-	private Object createDate;
-	private Object credentialsExpiredDate;
+	private Date createDate;
+	private Date credentialsExpiredDate;
 	private BigDecimal credentialsNonExpired;
 	private BigDecimal enabled;
 	private BigDecimal firstLogin;
@@ -21,7 +22,7 @@ public class UserDTO {
 	private BigDecimal maxSession;
 	private String password;
 	private BigDecimal profileId;
-	private Object updateDate;
+	private Date updateDate;
 	private String username;
 	
 }

@@ -1,6 +1,7 @@
 package com.tirmizee.api.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -17,7 +18,7 @@ public class BankDTO implements Serializable {
 	private String bankCode;
 	private String bankDesc;
 	private String bankName;
-	private Object createDate;
-	private Object updateDate;
+	private Date createDate;
+	private Date updateDate;
 
 }

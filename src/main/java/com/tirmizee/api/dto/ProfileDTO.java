@@ -1,6 +1,7 @@
 package com.tirmizee.api.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -15,7 +16,7 @@ public class ProfileDTO implements Serializable {
 	private long profileId;
 	private String branchCode;
 	private String citizenId;
-	private Object createDate;
+	private Date createDate;
 	private String email;
 	private String firstName;
 	private String lastName;
@@ -23,6 +24,6 @@ public class ProfileDTO implements Serializable {
 	private String profileImage;
 	private String subDistrictCode;
 	private String tel;
-	private Object updateDate;
+	private Date updateDate;
 
 }

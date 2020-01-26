@@ -15,7 +15,7 @@ import com.tirmizee.repositories.UserRepository;
 public class UserController {
 
 	@Autowired
-	private UserRepository UserRepository;
+	private UserRepository UserRepository; 
 	
 	@RequestMapping(value="/user", method = RequestMethod.GET)
     public List<UserDTO> listUser(){

@@ -32,16 +32,16 @@ import com.tirmizee.config.security.UserDetailsServiceImpl;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-    private DataSource dataSource;
+	private DataSource dataSource;
 	
 	@Autowired
-    private UserDetailsServiceImpl userDetailsService;
+	private UserDetailsServiceImpl userDetailsService;
 
-    @Override
-    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+	@Override
+	@Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+	    return super.authenticationManagerBean();
+	}
 
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
@@ -58,20 +58,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/api-docs/**").permitAll();
     }
 
-    @Bean
-    public TokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource);
-    }
+	@Bean
+	public TokenStore tokenStore() {
+	    return new JdbcTokenStore(dataSource);
+	}
 	
 	@Bean public PasswordEncoder passwordEncoder(){ 
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 	 
-    @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	@Bean
-    public PasswordEncoder noOpPasswordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
-    }
+	public PasswordEncoder noOpPasswordEncoder(){
+	    return NoOpPasswordEncoder.getInstance();
+	}
     
     @Bean
     public PasswordEncoder bCryptPasswordEncoder(){

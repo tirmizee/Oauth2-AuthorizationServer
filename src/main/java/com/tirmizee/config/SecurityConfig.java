@@ -24,7 +24,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import com.tirmizee.service.UserServiceImpl;
+import com.tirmizee.config.security.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 	
 	@Autowired
-    private UserServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Override
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
@@ -62,7 +62,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public TokenStore tokenStore() {
         return new JdbcTokenStore(dataSource);
     }
-
 	
 	@Bean public PasswordEncoder passwordEncoder(){ 
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();

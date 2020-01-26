@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tirmizee.api.data.UserData;
-import com.tirmizee.dao.UserDao;
+import com.tirmizee.api.dto.UserDTO;
+import com.tirmizee.repositories.UserRepository;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
 	@Autowired
-	private UserDao userDao;
+	private UserRepository UserRepository;
 	
 	@RequestMapping(value="/user", method = RequestMethod.GET)
-    public List<UserData> listUser(){
-        return userDao.findAll();
+    public List<UserDTO> listUser(){
+        return null;
     }
 	
 }

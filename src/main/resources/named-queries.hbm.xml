@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<query name="HQL_ALL_User">FROM User</query>
+	<sql-query name="SQL_ALL_CUSTOMER">
+		<return alias="l" class="com.tirmizee.entities.User"/>
+		<![CDATA[SELECT * FROM User]]>
+	</sql-query>
+</hibernate-mapping>

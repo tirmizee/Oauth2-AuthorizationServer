@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+
+import com.tirmizee.common.utils.OAuth2Utils;
 
 @Configuration
 @EnableAuthorizationServer
@@ -19,10 +20,6 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
 	static final String CLIEN_ID = "devglan-client";
 	static final String CLIENT_SECRET = "{noop}devglan-secret";
-	static final String GRANT_TYPE_PASSWORD = "password";
-	static final String AUTHORIZATION_CODE = "authorization_code";
-	static final String REFRESH_TOKEN = "refresh_token";
-	static final String IMPLICIT = "implicit";
 	static final String SCOPE_READ = "read";
 	static final String SCOPE_WRITE = "write";
 	static final String TRUST = "trust";
@@ -48,7 +45,11 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 				.passwordEncoder(noOpPasswordEncoder)
 					.withClient(CLIEN_ID)
 					.secret(CLIENT_SECRET)
-					.authorizedGrantTypes(GRANT_TYPE_PASSWORD, AUTHORIZATION_CODE, OAuth2AccessToken.REFRESH_TOKEN, IMPLICIT )
+					.authorizedGrantTypes(
+						OAuth2Utils.GRANT_TYPE_PASSWORD, 
+						OAuth2Utils.GRANT_TYPE_AUTHORIZATION_CODE, 
+						OAuth2Utils.GRANT_TYPE_REFRESH_TOKEN, 
+						OAuth2Utils.GRANT_TYPE_IMPLICIT )
 					.scopes(SCOPE_READ, SCOPE_WRITE, TRUST)
 					.accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)
 					.refreshTokenValiditySeconds(FREFRESH_TOKEN_VALIDITY_SECONDS);

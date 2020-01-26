@@ -1,6 +1,5 @@
 package com.tirmizee.config;
 
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +30,16 @@ import com.tirmizee.config.security.UserDetailsServiceImpl;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 	
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 
-	@Override
-	@Bean(name = BeanIds.AUTHENTICATION_MANAGER)
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-	    return super.authenticationManagerBean();
+    @Override
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+    	return super.authenticationManagerBean();
 	}
 
     @Autowired

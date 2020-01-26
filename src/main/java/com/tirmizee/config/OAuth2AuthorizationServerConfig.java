@@ -18,8 +18,8 @@ import com.tirmizee.common.utils.OAuth2Utils;
 @EnableAuthorizationServer
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-	static final String CLIEN_ID = "devglan-client";
-	static final String CLIENT_SECRET = "{noop}devglan-secret";
+	static final String CLIEN_ID = "angular-client";
+	static final String CLIENT_SECRET = "{noop}angular-secret";
 	static final String SCOPE_READ = "read";
 	static final String SCOPE_WRITE = "write";
 	static final String TRUST = "trust";
@@ -42,17 +42,17 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 	public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
 		configurer
 			.jdbc(dataSource)
-				.passwordEncoder(noOpPasswordEncoder)
-					.withClient(CLIEN_ID)
-					.secret(CLIENT_SECRET)
-					.authorizedGrantTypes(
-						OAuth2Utils.GRANT_TYPE_PASSWORD, 
-						OAuth2Utils.GRANT_TYPE_AUTHORIZATION_CODE, 
-						OAuth2Utils.GRANT_TYPE_REFRESH_TOKEN, 
-						OAuth2Utils.GRANT_TYPE_IMPLICIT )
-					.scopes(SCOPE_READ, SCOPE_WRITE, TRUST)
-					.accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)
-					.refreshTokenValiditySeconds(FREFRESH_TOKEN_VALIDITY_SECONDS);
+				.passwordEncoder(noOpPasswordEncoder);
+//					.withClient(CLIEN_ID)
+//					.secret(CLIENT_SECRET)
+//					.authorizedGrantTypes(
+//						OAuth2Utils.GRANT_TYPE_PASSWORD, 
+//						OAuth2Utils.GRANT_TYPE_AUTHORIZATION_CODE, 
+//						OAuth2Utils.GRANT_TYPE_REFRESH_TOKEN, 
+//						OAuth2Utils.GRANT_TYPE_IMPLICIT )
+//					.scopes(SCOPE_READ, SCOPE_WRITE, TRUST)
+//					.accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)
+//					.refreshTokenValiditySeconds(FREFRESH_TOKEN_VALIDITY_SECONDS);
 	}
 
 	@Override

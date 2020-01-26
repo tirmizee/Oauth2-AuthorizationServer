@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import com.tirmizee.entities.User;
 import com.tirmizee.repositories.UserRepository;
 
-@Service(value = "userService")
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
@@ -32,6 +32,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		return new UserDetailsImpl.Builder()
 			.username(user.getUsername())
 			.password(user.getPassword())
+			.accountNonExpired(true)
+			.accountNonLocked(true)
+			.enabled(true)
+			.credentialsNonExpired(true)
 			.authorities(grantAuthorities(user.getPermissions()))
 			.build();
 	}

@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.web.cors.CorsConfiguration;
@@ -54,7 +55,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .anonymous().disable()
             .authorizeRequests()
-            .antMatchers("/api-docs/**").permitAll();
+            .antMatchers("/api-docs/**").permitAll()
+            .and()
+            .exceptionHandling()
+            	.accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 
     @Bean

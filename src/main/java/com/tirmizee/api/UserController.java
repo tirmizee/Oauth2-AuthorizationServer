@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tirmizee.api.dto.UserDTO;
+import com.tirmizee.mapper.UserMapper;
 import com.tirmizee.repositories.UserRepository;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("api/users")
 public class UserController {
 
 	@Autowired
@@ -19,7 +20,7 @@ public class UserController {
 	
 	@RequestMapping(value="/user", method = RequestMethod.GET)
     public List<UserDTO> listUser(){
-        return null;
+        return UserMapper.INSTANCE.toDtos(UserRepository.findAll());
     }
 	
 }

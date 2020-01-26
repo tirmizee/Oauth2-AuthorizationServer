@@ -38,7 +38,7 @@ public class UserDetailsImpl implements UserDetails {
 		this.credentialsNonExpired = true;
 	}
 
-	public UserDetailsImpl(Builder<?> builder) {
+	public UserDetailsImpl(Builder builder) {
 		if (StringUtils.isEmpty(builder.username) || (builder.password == null)) {
 			throw new IllegalArgumentException("Cannot pass null or empty values to constructor");
 		}
@@ -100,7 +100,7 @@ public class UserDetailsImpl implements UserDetails {
 		return username != null ? username.hashCode() : 0;
 	}
 	
-	public static class Builder<T extends Builder<?>>{
+	public static class Builder {
 		
 		private String username;
 		private String password;
@@ -112,52 +112,47 @@ public class UserDetailsImpl implements UserDetails {
 		
 		public Builder(){}
 		
-		@SuppressWarnings("unchecked")
-		public T getThis(){
-			return (T) this;
-		}
-		
-		public T username(String username){
+		public Builder username(String username){
 			this.username = username;
-			return getThis();
+			return this;
 		}
 		
-		public T password(String password){
+		public Builder password(String password){
 			this.password = password;
-			return getThis();
+			return this;
 		}
 		
-		public T authorities(Collection<? extends GrantedAuthority>  authorities){
+		public Builder authorities(Collection<? extends GrantedAuthority>  authorities){
 			this.authorities = authorities;
-			return getThis();
+			return this;
 		}
 		
-		public T authorities(GrantedAuthority...authorities) {
+		public Builder authorities(GrantedAuthority...authorities) {
 			return authorities(Arrays.asList(authorities));
 		}
 		
-		public T authorities(String... authorities) {
+		public Builder authorities(String... authorities) {
 			return authorities(AuthorityUtils.createAuthorityList(authorities));
 		}
 		
-		public T enabled(boolean enabled){
+		public Builder enabled(boolean enabled){
 			this.enabled = enabled;
-			return getThis();
+			return this;
 		}
 		
-		public T accountNonLocked(boolean accountNonLocked){
+		public Builder accountNonLocked(boolean accountNonLocked){
 			this.accountNonLocked = accountNonLocked;
-			return getThis();
+			return this;
 		}
 		
-		public T accountNonExpired(boolean accountNonExpired){
+		public Builder accountNonExpired(boolean accountNonExpired){
 			this.accountNonExpired = accountNonExpired;
-			return getThis();
+			return this;
 		}
 		
-		public T credentialsNonExpired(boolean credentialsNonExpired){
+		public Builder credentialsNonExpired(boolean credentialsNonExpired){
 			this.credentialsNonExpired = credentialsNonExpired;
-			return getThis();
+			return this;
 		}
 		
 		public UserDetailsImpl build(){

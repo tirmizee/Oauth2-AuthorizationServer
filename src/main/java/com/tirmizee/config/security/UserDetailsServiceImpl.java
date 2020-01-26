@@ -1,7 +1,8 @@
 package com.tirmizee.config.security;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,16 +22,24 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private UserRepository userRepository;
 
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+		
 		User user = userRepository.findByUsername(userId);
+	
 		if(user == null){
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority());
+		
+		return new UserDetailsImpl.Builder()
+			.username(user.getUsername())
+			.password(user.getPassword())
+			.authorities(grantAuthorities(user.getPermissions()))
+			.build();
 	}
 
-	private List<GrantedAuthority> getAuthority() {
-		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+	private Set<GrantedAuthority> grantAuthorities(Collection<? extends com.tirmizee.entities.Permission> permissions){
+        Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+        permissions.forEach(o -> authorities.add(new SimpleGrantedAuthority(o.getPerCode())));
+	    return authorities;
 	}
-
 	
 }

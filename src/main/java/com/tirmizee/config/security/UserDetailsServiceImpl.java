@@ -43,7 +43,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private Set<GrantedAuthority> grantAuthorities(Collection<? extends com.tirmizee.entities.Permission> permissions){
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
         permissions.forEach(o -> authorities.add(new SimpleGrantedAuthority(o.getPerCode())));
-	    return authorities;
+        return authorities;
 	}
 	
 }

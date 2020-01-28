@@ -2,9 +2,18 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+
 	<query name="HQL_ALL_User">FROM User</query>
-	<sql-query name="SQL_ALL_CUSTOMER">
-		<return alias="l" class="com.tirmizee.entities.User"/>
-		<![CDATA[SELECT * FROM User]]>
+	
+	<sql-query name="PERMISSTION.FIND_BY_USERNAME">
+		<![CDATA[
+			SELECT
+			    P.*
+			FROM USERS U
+			INNER JOIN ROLE_MAP_PERMISSION RP ON U.FK_ROLE_ID = RP.ROLE_ID
+			INNER JOIN PERMISSION P ON RP.PER_ID = P.PER_ID
+			WHERE U.USERNAME = :username
+		]]>
 	</sql-query>
+	
 </hibernate-mapping>

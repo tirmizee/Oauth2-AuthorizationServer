@@ -1,21 +1,18 @@
 package com.tirmizee.entities;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * The persistent class for the PERMISSION database table.
@@ -23,11 +20,12 @@ import lombok.Data;
  */
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "PERMISSION", schema = "C##ORGANIZATION")
 @NamedQuery(name="Permission.findAll", query="SELECT p FROM Permission p")
-public class Permission implements Serializable {
+public class Permission {
 	
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Column(name="PER_ID")
 	private long perId;
@@ -52,9 +50,9 @@ public class Permission implements Serializable {
 	@Column(name="UPDATE_DATE")
 	private Date updateDate;
 	
-	@ManyToMany(fetch = FetchType.EAGER,
-	    cascade = { CascadeType.PERSIST, CascadeType.MERGE },
-	    mappedBy = "permissions")
-    private Set<User> users = new HashSet<User>();;
+	/*
+	 * @ManyToMany(fetch = FetchType.EAGER, mappedBy = "permissions") private
+	 * Set<User> users = new HashSet<User>();;
+	 */
 
 }

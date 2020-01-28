@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util 
+        http://www.springframework.org/schema/util/spring-util.xsd">
+<util:map id="queries" map-class="java.util.HashMap">
+
+	<entry key="PERMISSTION.FIND_BY_USERNAME">
+       <value>
+      		<![CDATA[
+				SELECT
+				    P.*
+				FROM USERS U
+				INNER JOIN ROLE_MAP_PERMISSION RP ON U.FK_ROLE_ID = RP.ROLE_ID
+				INNER JOIN PERMISSION P ON RP.PER_ID = P.PER_ID
+				WHERE U.USERNAME = :username
+       		]]>
+        </value>
+	</entry>
+	
+</util:map>
+</beans>

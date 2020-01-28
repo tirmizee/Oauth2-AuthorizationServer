@@ -17,7 +17,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.web.cors.CorsConfiguration;
@@ -43,11 +42,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    return super.authenticationManagerBean();
     }
 
-    @Autowired
-    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
+    @Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+	    	.userDetailsService(userDetailsService)
+	    	.passwordEncoder(passwordEncoder());
+	}
+
+	/*
+	 * @Autowired public void globalUserDetails(AuthenticationManagerBuilder auth)
+	 * throws Exception { auth .userDetailsService(userDetailsService)
+	 * .passwordEncoder(passwordEncoder()); }
+	 */
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -55,10 +61,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .anonymous().disable()
             .authorizeRequests()
-            .antMatchers("/api-docs/**").permitAll()
-            .and()
-            .exceptionHandling()
-            	.accessDeniedHandler(new OAuth2AccessDeniedHandler());
+            .antMatchers ("/oauth/token").permitAll()
+            .antMatchers("/api-docs/**").permitAll();
+//            .and()
+//            .exceptionHandling()
+//            	.authenticationEntryPoint(new OAuth2AuthenticationEntryPoint());
+//            	.accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 
     @Bean

@@ -18,7 +18,7 @@ public class OAuth2AccessDeniedHandler extends org.springframework.security.oaut
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException authException)
 			throws IOException, ServletException {
-		System.out.println(authException.getMessage());
+		System.out.println("AccessDeniedException : " + authException.getMessage());
 		super.handle(request, response, authException);
 	}
 	

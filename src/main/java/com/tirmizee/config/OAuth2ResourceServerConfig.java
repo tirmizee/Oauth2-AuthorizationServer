@@ -19,10 +19,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) {
-//		resources
-//			.resourceId(RESOURCE_ID).stateless(false);
-//			
-//			.authenticationEntryPoint(new OAuth2AuthenticationEntryPoint());
+		resources.resourceId(RESOURCE_ID).stateless(false);
 	}
 
 	@Override

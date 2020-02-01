@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.BeanIds;
@@ -18,16 +19,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import com.tirmizee.config.security.OAuth2AccessDeniedHandler;
 import com.tirmizee.config.security.OAuth2AuthenticationProvider;
-import com.tirmizee.config.security.Oauth2AuthenticationEventPublisher;
 import com.tirmizee.config.security.UserDetailsServiceImpl;
 
 @Configuration
@@ -58,9 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-        	.authenticationEventPublisher(new Oauth2AuthenticationEventPublisher())
-        	.authenticationProvider(authenticationProvider());
+        auth.authenticationProvider(authenticationProvider());
 	}
 
     @Override
@@ -74,10 +73,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public TokenStore tokenStore() {
+    @Primary
+    public TokenStore jdbcTokenStore() {
         return new JdbcTokenStore(dataSource);
     }
-
+    
+    @Bean
+    public TokenStore jwtTokenStore(JwtAccessTokenConverter jwtAccessTokenConverter) {
+        return new JwtTokenStore(jwtAccessTokenConverter);
+    }
+    
+    @Bean
+	public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("as466gf");
+        return converter;
+	}
+    
     @Bean public PasswordEncoder passwordEncoder(){ 
 	    return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }

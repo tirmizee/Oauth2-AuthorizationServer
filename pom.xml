@@ -11,7 +11,7 @@
 	<groupId>com.tirmizee</groupId>
 	<artifactId>AuthorizationServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Service-AuthorizationServer</name>
+	<name>Service-AuthorizationServer-JDBC</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

@@ -3,7 +3,6 @@ package com.tirmizee.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,7 +12,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import com.tirmizee.config.security.OAuth2AuthenticationEntryPoint;
 import com.tirmizee.config.security.Oauth2ResponseExceptionTranslator;
@@ -34,12 +32,8 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 	private DataSource dataSource;
     
     @Autowired 
-    @Qualifier("jwtTokenStore")
 	private TokenStore tokenStore;
     
-    @Autowired
-	private JwtAccessTokenConverter jwtAccessTokenConverter;
-
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
@@ -75,7 +69,6 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints
 			.tokenStore(tokenStore)
-			.accessTokenConverter(jwtAccessTokenConverter)
 			.authenticationManager(authenticationManager)
 			.exceptionTranslator(new Oauth2ResponseExceptionTranslator());
 	}

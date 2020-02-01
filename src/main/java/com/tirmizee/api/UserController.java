@@ -3,7 +3,7 @@ package com.tirmizee.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +19,9 @@ public class UserController {
 	private UserRepository UserRepository; 
 	
 	@RequestMapping(value="/user", method = RequestMethod.GET)
-    public List<User> listUser(){
-		System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
+    public List<User> listUser(OAuth2Authentication authentication){
+		System.out.println(authentication.getName());
+		System.out.println(authentication.getAuthorities().size());
         return UserRepository.findAll();
     }
 	
